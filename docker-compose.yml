@@ -21,8 +21,8 @@ services:
     image: asanalii/vue-frontend:latest
     networks:
       - app-net
-    volumes:
-      - frontend-dist:/usr/share/nginx/html
+    # volumes:
+    #   - frontend-dist:/usr/share/nginx/html
     deploy:
       replicas: 1
 
