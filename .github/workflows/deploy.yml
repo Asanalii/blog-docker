@@ -30,21 +30,21 @@ jobs:
           docker build -t $BACKEND_IMAGE:latest ./back
           docker push $BACKEND_IMAGE:latest
 
-      - name: Deploy to Swarm Server via SSH (test)
-        uses: appleboy/ssh-action@v1.0.0
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: root
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            echo "[DEBUG] Current path: $(pwd)"
-            echo "[DEBUG] Home dir: $HOME"
-            echo "[DEBUG] Listing /opt:"
-            ls -la /opt
-            echo "[DEBUG] Listing /opt/blogapp:"
-            ls -la /opt/blogapp
-            echo "[DEBUG] Listing /opt/blogapp/blog-docker:"
-            ls -la /opt/blogapp/blog-docker
+      # - name: Deploy to Swarm Server via SSH (test)
+      #   uses: appleboy/ssh-action@v1.0.0
+      #   with:
+      #     host: ${{ secrets.SSH_HOST }}
+      #     username: root
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     script: |
+      #       echo "[DEBUG] Current path: $(pwd)"
+      #       echo "[DEBUG] Home dir: $HOME"
+      #       echo "[DEBUG] Listing /opt:"
+      #       ls -la /opt
+      #       echo "[DEBUG] Listing /opt/blogapp:"
+      #       ls -la /opt/blogapp
+      #       echo "[DEBUG] Listing /opt/blogapp/blog-docker:"
+      #       ls -la /opt/blogapp/blog-docker
 
       - name: Deploy to Swarm Server via SSH (prod)
         uses: appleboy/ssh-action@v1.0.0
