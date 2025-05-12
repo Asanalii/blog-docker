@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   frontend:
-    image: asanalii/vue-frontend:latest
+    image: vue-frontend:latest
     ports:
       - "80:80"
     networks:
@@ -11,7 +11,7 @@ services:
       replicas: 1
 
   backend:
-    image: asanalii/fastapi-backend:latest
+    image: fastapi-backend:latest
     environment:
       - MONGO_URI=mongodb+srv://testa:asan1234@test.wr2lcrn.mongodb.net/?retryWrites=true&w=majority&appName=test&tls=true&tlsAllowInvalidCertificates=true
     networks:
