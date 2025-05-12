@@ -37,4 +37,20 @@ jobs:
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            echo "[DEBUG] Current path: $(pwd)"
+            echo "[DEBUG] Home dir: $HOME"
+            echo "[DEBUG] Listing /opt:"
+            ls -la /opt
+            echo "[DEBUG] Listing /opt/blogapp:"
+            ls -la /opt/blogapp
+            echo "[DEBUG] Listing /opt/blogapp/blog-docker:"
+            ls -la /opt/blogapp/blog-docker
+
+      - name: Deploy to Swarm Server via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
             cd /opt/blogapp/blog-docker && docker stack deploy -c docker-compose.yml blogapp
