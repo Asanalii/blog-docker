@@ -30,7 +30,7 @@ jobs:
           docker build -t $BACKEND_IMAGE:latest ./back
           docker push $BACKEND_IMAGE:latest
 
-      - name: Deploy to Swarm Server via SSH
+      - name: Deploy to Swarm Server via SSH (test)
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -46,13 +46,12 @@ jobs:
             echo "[DEBUG] Listing /opt/blogapp/blog-docker:"
             ls -la /opt/blogapp/blog-docker
 
-      - name: Deploy to Swarm Server via SSH
+      - name: Deploy to Swarm Server via SSH (prod)
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST }}
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /opt/blogapp/blog-docker && docker stack deploy -c docker-compose.yml blogapp
-
-#
+            # cd /opt/blogapp/blog-docker && docker stack deploy -c docker-compose.yml blogapp
+            cd /root/deploy/blog-docker && docker stack deploy -c docker-compose.yml blogapp
