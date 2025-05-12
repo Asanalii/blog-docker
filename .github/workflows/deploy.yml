@@ -37,5 +37,5 @@ jobs:
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /opt/blogapp
+            cd /opt/blogapp/blog-docker
             docker stack deploy -c docker-compose.yml app
