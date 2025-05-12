@@ -1,23 +1,41 @@
-version: "3.8"
 services:
   frontend:
     image: asanalii/vue-frontend:latest
-    deploy:
-      placement:
-        constraints: [node.hostname == swarm-node-1]
+    ports:
+      - "80:80"
     networks:
       - app-net
+    deploy:
+      replicas: 1
 
   backend:
     image: asanalii/fastapi-backend:latest
     environment:
-      - MONGO_URI=mongodb+srv://testa:asan1234@test.wr2lcrn.mongodb.net/?retryWrites=true&w=majority&appName=test&tls=true&tlsAllowInvalidCertificates=true
-    deploy:
-      placement:
-        constraints: [node.hostname == swarm-node-2]
+      - MONGO_URI=mongodb+srv://testa:asan1234@...&tlsAllowInvalidCertificates=true
     networks:
       - app-net
+    deploy:
+      replicas: 1
+# version: "3.8"
+# services:
+#   frontend:
+#     image: asanalii/vue-frontend:latest
+#     deploy:
+#       placement:
+#         constraints: [node.hostname == swarm-node-1]
+#     networks:
+#       - app-net
 
-networks:
-  app-net:
-    driver: overlay
+#   backend:
+#     image: asanalii/fastapi-backend:latest
+#     environment:
+#       - MONGO_URI=mongodb+srv://testa:asan1234@test.wr2lcrn.mongodb.net/?retryWrites=true&w=majority&appName=test&tls=true&tlsAllowInvalidCertificates=true
+#     deploy:
+#       placement:
+#         constraints: [node.hostname == swarm-node-2]
+#     networks:
+#       - app-net
+
+# networks:
+#   app-net:
+#     driver: overlay
