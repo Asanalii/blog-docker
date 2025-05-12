@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   frontend:
     image: asanalii/vue-frontend:latest
@@ -11,11 +13,15 @@ services:
   backend:
     image: asanalii/fastapi-backend:latest
     environment:
-      - MONGO_URI=mongodb+srv://testa:asan1234@...&tlsAllowInvalidCertificates=true
+      - MONGO_URI=mongodb+srv://testa:asan1234@test.wr2lcrn.mongodb.net/?retryWrites=true&w=majority&appName=test&tls=true&tlsAllowInvalidCertificates=true
     networks:
       - app-net
     deploy:
       replicas: 1
+
+networks:
+  app-net:
+    driver: overlay
 # version: "3.8"
 # services:
 #   frontend:
