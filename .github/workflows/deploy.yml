@@ -37,7 +37,7 @@ jobs:
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /root/deploy/blog-docker && git pull origin master && docker stack deploy -c docker-compose.yml blogapp
+            cd ~/deploy/blog-docker && git pull origin master && docker stack deploy -c docker-compose.yml blogapp
 
       - name: Deploy to Swarm Server via SSH (test)
         uses: appleboy/ssh-action@v1.0.0
@@ -46,14 +46,14 @@ jobs:
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            echo "[DEBUG] WHOAMI: $(whoami)"
             echo "[DEBUG] Current path: $(pwd)"
-            echo "[DEBUG] Home dir: $HOME"
-            echo "[DEBUG] Listing /opt:"
-            ls -la /opt
-            echo "[DEBUG] Listing /opt/blogapp:"
-            ls -la /opt/blogapp
-            echo "[DEBUG] Listing /opt/blogapp/blog-docker:"
-            ls -la /opt/blogapp/blog-docker
+            echo "[DEBUG] Listing /:"
+            ls -la /
+            echo "[DEBUG] Listing ~/deploy:"
+            ls -la ~/deploy
+            echo "[DEBUG] Listing ~/deploy/blog-docker:"
+            ls -la ~/deploy/blog-docker
 
 # cd /root/deploy/blog-docker && docker stack deploy -c docker-compose.yml blogapp
 # cd /opt/blogapp/blog-docker && docker stack deploy -c docker-compose.yml blogapp
