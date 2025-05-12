@@ -13,7 +13,7 @@ import Blog from "./components/Blog.vue";
 
 <style scoped>
 .test {
-  background: red;
+  background: blue;
   height: 20px;
   width: 100%;
 }
